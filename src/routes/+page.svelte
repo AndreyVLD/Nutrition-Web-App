@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import InputForm from '$lib/components/InputForm.svelte';
+	import type { PageProps } from './$types';
+
+	let { form }: PageProps = $props();
+	
+</script>
+
+<div class="flex flex-col items-center mt-5">
+	<h1 class="text-lg">An interesting search engine</h1>
+	<InputForm />
+	{#each form?.people ?? [] as person}
+		<li>{person.name}</li>
+	{/each}
+</div>
