@@ -1,5 +1,5 @@
 import type { Actions } from './$types';
-import { getFood } from '$lib/services/fdaApi';
+import { getFood } from '$lib/server/fdaApi';
 import { fail } from '@sveltejs/kit';
 
 export const actions = {
@@ -9,16 +9,11 @@ export const actions = {
 
 		if (!query) {
 			console.error('No query provided');
-			return fail(400, { missingQquery: 'query' });
+			return fail(400, { missingQuery: 'query' });
 		}
-		getFood(query);
+
 		return {
-			people: [
-				{ id: 1, name: 'John Doe' },
-				{ id: 2, name: 'Jane Doe' },
-				{ id: 3, name: 'Alice' },
-				{ id: 4, name: 'Bob' }
-			]
+			foodResponse: await getFood(query)
 		};
 	}
 } satisfies Actions;
