@@ -18,6 +18,7 @@
 		name="query"
 		placeholder="Enter your search query"
 		type="text"
+		required
 	/>
 	<button
 		class="ml-5 flex items-center rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none
