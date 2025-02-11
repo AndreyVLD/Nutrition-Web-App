@@ -4,7 +4,7 @@ export interface FoodSearchResponse {
 	foods: Food[];
 }
 
-interface Food {
+export interface Food {
 	fdcId: number;
 	description: string;
 	dataType: 'Foundation' | 'Branded' | 'SR Legacy' | 'Survey (FNDDS)' | 'Experimental';
@@ -13,10 +13,10 @@ interface Food {
 	brandOwner?: string;
 }
 
-interface FoodNutrient {
-    nutrientId: number;
-    nutrientName: string;
-    nutrientNumber: string;
-    unitName: string;
-    value: number;
+export interface FoodNutrient {
+	nutrientId: number;
+	nutrientName: string;
+	nutrientNumber: string;
+	unitName: string;
+	value: number;
 }
