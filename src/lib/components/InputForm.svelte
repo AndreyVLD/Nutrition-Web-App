@@ -20,8 +20,9 @@
 
 <form action="?/search" class="mt-5 flex flex-row" method="POST" use:enhance={handleEnhance}>
 	<input
-		class="w-96 rounded border-2 border-gray-300 px-4 py-2
-				 focus:outline-none focus:ring-2 focus:ring-blue-300 focus-visible:ring-2 focus-visible:ring-blue-300"
+		class="w-48 rounded border-2 border-gray-300 px-4 py-2
+				 focus:outline-none focus:ring-2 focus:ring-blue-300 focus-visible:ring-2 focus-visible:ring-blue-300
+				 sm:w-64 md:w-80 lg:w-96 xl:w-96"
 		name="query"
 		placeholder="Enter your search query"
 		type="text"
