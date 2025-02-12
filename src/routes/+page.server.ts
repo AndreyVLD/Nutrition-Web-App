@@ -31,9 +31,8 @@ export const actions = {
 	search: async (event) => {
 		const formData = await event.request.formData();
 		const query = (formData.get('query') ?? '').toString().trim();
+		const page = (formData.get('page') ?? 1) as number;
 		const processedQuery = processQuery(query);
-
-		console.log('Query:', processedQuery);
 
 		if (!processedQuery) {
 			console.error('No query provided');
@@ -41,7 +40,7 @@ export const actions = {
 		}
 
 		return {
-			foodResponse: await getFood(processedQuery)
+			foodResponse: await getFood(processedQuery, page)
 		};
 	}
 } satisfies Actions;

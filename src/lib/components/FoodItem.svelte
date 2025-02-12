@@ -26,7 +26,7 @@
 		>
 		{#if totalSugars}
 			<span class="font-bold text-red-600"
-				>Total Sugars: {totalSugars?.value} {totalSugars?.unitName}</span
+				>Total Sugars: {totalSugars.value} {totalSugars.unitName}</span
 			>
 		{/if}
 	</div>

@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	interface InputFormProps {
+		query: string;
+	}
+
+	let { query = $bindable('') }: InputFormProps = $props();
 
 	let loading = $state(false);
 	function handleEnhance() {
 		loading = true;
 		return async ({ update }: { update: any }) => {
-			await update();
+			await update({ reset: false });
 			loading = false;
 		};
 	}
@@ -20,6 +25,7 @@
 		type="text"
 		autocomplete="off"
 		required
+		bind:value={query}
 	/>
 	<button
 		class="ml-5 flex items-center rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none
