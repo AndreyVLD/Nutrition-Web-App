@@ -13,7 +13,7 @@
 </script>
 
 <div class="mt-5 flex flex-col items-center">
-	<InputForm bind:query />
+	<InputForm bind:query bind:currentPage />
 	<PaginationNav {query} {totalPages} bind:currentPage />
 	<div class="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
 		{#each foodList as food}

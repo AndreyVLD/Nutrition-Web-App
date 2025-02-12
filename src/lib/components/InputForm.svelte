@@ -2,13 +2,15 @@
 	import { enhance } from '$app/forms';
 	interface InputFormProps {
 		query: string;
+		currentPage?: number;
 	}
 
-	let { query = $bindable('') }: InputFormProps = $props();
+	let { query = $bindable(''), currentPage = $bindable(1) }: InputFormProps = $props();
 
 	let loading = $state(false);
 	function handleEnhance() {
 		loading = true;
+		currentPage = 1;
 		return async ({ update }: { update: any }) => {
 			await update({ reset: false });
 			loading = false;
