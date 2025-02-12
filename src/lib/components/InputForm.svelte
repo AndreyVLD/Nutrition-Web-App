@@ -18,6 +18,7 @@
 		name="query"
 		placeholder="Enter your search query"
 		type="text"
+		autocomplete="off"
 		required
 	/>
 	<button
