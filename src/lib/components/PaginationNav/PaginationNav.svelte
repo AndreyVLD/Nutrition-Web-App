@@ -2,15 +2,19 @@
 	import { enhance } from '$app/forms';
 	import NavButton from './NavButton.svelte';
 
-	let loading = $state(false);
-
 	interface PaginationNavProps {
 		totalPages: number;
 		currentPage: number;
 		query?: string;
+		loading?: boolean;
 	}
 
-	let { totalPages, currentPage = $bindable(1), query }: PaginationNavProps = $props();
+	let {
+		totalPages,
+		currentPage = $bindable(1),
+		query,
+		loading = $bindable(false)
+	}: PaginationNavProps = $props();
 
 	function handleEnhance({ formData }: { formData: FormData }) {
 		loading = true;
@@ -30,7 +34,6 @@
 			loading = false;
 		};
 	}
-	
 </script>
 
 {#if totalPages}

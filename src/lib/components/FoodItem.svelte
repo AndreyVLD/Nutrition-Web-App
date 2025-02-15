@@ -13,9 +13,15 @@
 	<!-- Card Header -->
 	<div class="mb-4">
 		<div class="m-0 text-lg font-bold">{foodProps.description}</div>
-		<div class="mb-3 mt-1 text-sm text-gray-600">{foodProps.foodCategory}</div>
+		<div class="mb-3 mt-1 text-sm text-gray-600">
+			<span class="font-semibold">Category:</span>
+			{foodProps.foodCategory}
+		</div>
 		{#if foodProps.brandOwner}
-			<div class="mb-3 mt-1 text-sm text-gray-600">{foodProps.brandOwner}</div>
+			<div class="mb-3 mt-1 text-sm text-gray-600">
+				<span class="font-semibold">Brand:</span>
+				{foodProps.brandOwner}
+			</div>
 		{/if}
 	</div>
 

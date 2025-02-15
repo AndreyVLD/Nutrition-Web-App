@@ -3,11 +3,15 @@
 	interface InputFormProps {
 		query: string;
 		currentPage?: number;
+		loading?: boolean;
 	}
 
-	let { query = $bindable(''), currentPage = $bindable(1) }: InputFormProps = $props();
+	let {
+		query = $bindable(''),
+		currentPage = $bindable(1),
+		loading = $bindable(false)
+	}: InputFormProps = $props();
 
-	let loading = $state(false);
 	function handleEnhance() {
 		loading = true;
 		currentPage = 1;

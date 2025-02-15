@@ -8,7 +8,7 @@ export async function getFood(name: string, page: number = 1) {
 	url.searchParams.append('api_key', FDC_API_KEY);
 	url.searchParams.append('query', name);
 	url.searchParams.append('dataType', 'Foundation,Branded');
-	url.searchParams.append('pageSize', '50');
+	url.searchParams.append('pageSize', '54');
 	url.searchParams.append('pageNumber', page.toString());
 	url.searchParams.append('sortBy', 'dataType.keyword');
 	url.searchParams.append('sortOrder', 'desc');

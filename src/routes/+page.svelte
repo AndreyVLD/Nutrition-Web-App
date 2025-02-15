@@ -7,14 +7,15 @@
 	let { form }: PageProps = $props();
 	let currentPage = $state(1);
 	let query = $state('');
+	let loading = $state(false);
 
 	let foodList = $derived(form?.foodResponse?.foods ?? []);
 	let totalPages = $derived(form?.foodResponse?.totalPages ?? 0);
 </script>
 
-<div class="mt-5 flex flex-col items-center">
-	<InputForm bind:query bind:currentPage />
-	<PaginationNav {query} {totalPages} bind:currentPage />
+<div class="mb-5 mt-5 flex flex-col items-center">
+	<InputForm bind:query bind:currentPage bind:loading />
+	<PaginationNav {query} {totalPages} bind:currentPage bind:loading />
 	<div
 		class="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
 	>
@@ -22,4 +23,5 @@
 			<FoodItem {...food}></FoodItem>
 		{/each}
 	</div>
+	<PaginationNav {query} {totalPages} bind:currentPage bind:loading />
 </div>
