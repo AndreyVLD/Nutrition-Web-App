@@ -9,16 +9,16 @@
 	);
 </script>
 
-<div class="w-full max-w-md rounded-lg bg-white p-4 shadow-md">
+<div class="flex w-full max-w-md flex-col rounded-lg bg-white p-4 shadow-md">
 	<!-- Card Header -->
-	<div class="mb-4">
+	<div class="mb-4 flex flex-col gap-1">
 		<div class="m-0 text-lg font-bold">{foodProps.description}</div>
-		<div class="mb-3 mt-1 text-sm text-gray-600">
+		<div class=" text-sm text-gray-600">
 			<span class="font-semibold">Category:</span>
 			{foodProps.foodCategory}
 		</div>
 		{#if foodProps.brandOwner}
-			<div class="mb-3 mt-1 text-sm text-gray-600">
+			<div class="text-sm text-gray-600">
 				<span class="font-semibold">Brand:</span>
 				{foodProps.brandOwner}
 			</div>
@@ -36,4 +36,5 @@
 			>
 		{/if}
 	</div>
+	<div class="mt-auto self-end text-sm text-gray-600">{foodProps.dataType}</div>
 </div>
