@@ -9,11 +9,17 @@
 	);
 </script>
 
-<div class="flex w-full max-w-md flex-col rounded-lg bg-white p-4 shadow-md">
+<a
+	href={`/food/${foodProps.fdcId}`}
+	class="flex w-full max-w-md flex-col rounded-lg bg-white p-4 shadow-md
+			transition duration-300 ease-in-out hover:scale-105 hover:bg-blue-50 hover:shadow-lg"
+	target="_blank"
+	rel="noopener noreferrer"
+>
 	<!-- Card Header -->
 	<div class="mb-4 flex flex-col gap-1">
 		<div class="m-0 text-lg font-bold">{foodProps.description}</div>
-		<div class=" text-sm text-gray-600">
+		<div class="text-sm text-gray-600">
 			<span class="font-semibold">Category:</span>
 			{foodProps.foodCategory}
 		</div>
@@ -37,4 +43,4 @@
 		{/if}
 	</div>
 	<div class="mt-auto self-end text-sm text-gray-600">{foodProps.dataType}</div>
-</div>
+</a>
