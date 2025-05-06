@@ -29,7 +29,8 @@
 
 		formData.append('page', currentPage.toString());
 		formData.append('query', query ?? '');
-		return async ({ update }: { update: any }) => {
+
+		return async ({ update }: { update }) => {
 			await update({ reset: false });
 			loading = false;
 		};
@@ -38,7 +39,7 @@
 
 {#if totalPages}
 	<form
-		class="mt-4 flex flex-row items-center justify-center gap-1"
+		class="flex flex-row items-center gap-1"
 		action="?/search"
 		method="POST"
 		use:enhance={handleEnhance}
