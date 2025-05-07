@@ -15,7 +15,7 @@
 	let totalPages = $derived(form?.foodResponse?.totalPages ?? 0);
 </script>
 
-<div class="mb-5 mt-5 flex flex-col items-center">
+<div class="mb-5 flex flex-col items-center">
 	<InputForm bind:currentPage bind:loading bind:query />
 	{#if totalPages}
 		<div class="relative mt-4 flex w-full items-center justify-center">
