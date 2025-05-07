@@ -1,5 +1,5 @@
 import type { Actions } from './$types';
-import { getFood } from '$lib/server/fdaApi';
+import { getFoodList } from '$lib/server/fdaApi';
 import { fail } from '@sveltejs/kit';
 
 function validateWord(word: string) {
@@ -40,7 +40,7 @@ export const actions = {
 		}
 
 		return {
-			foodResponse: await getFood(processedQuery, page)
+			foodResponse: await getFoodList(processedQuery, page)
 		};
 	}
 } satisfies Actions;
