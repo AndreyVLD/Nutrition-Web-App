@@ -1,5 +1,5 @@
 import type { Actions } from './$types';
-import { getFoodList } from '$lib/server/fdaApi';
+import { getFoodList } from '$lib/api/fdaApi';
 import { fail } from '@sveltejs/kit';
 
 function validateWord(word: string) {

@@ -1,13 +1,12 @@
 import { z } from 'zod';
 import { fail, redirect } from '@sveltejs/kit';
-import prisma from '$lib/prisma';
-import bcrypt from 'bcryptjs';
+import { createUser } from '$lib/user';
 
 const RegistrationSchema = z
 	.object({
 		email: z.string().email({ message: 'Invalid email address' }),
 		password: z.string().min(8, { message: 'Password must be at least 8 characters' }),
-		repeatPassword: z.string()
+		repeatPassword: z.string().min(1, { message: 'Please confirm your password' })
 	})
 	.refine((data) => data.password === data.repeatPassword, {
 		message: 'Passwords do not match',
@@ -27,26 +26,19 @@ export const actions = {
 			);
 			const allErrors = [...formErrors, ...fieldMsgs];
 			return fail(400, {
-				errors: allErrors,
-				fields: { email: formData.email }
+				errors: allErrors
 			});
 		}
 
 		const { email, password } = result.data;
 
-		const existing = await prisma.user.findUnique({ where: { email } });
+		const { errors } = await createUser(email, password);
 
-		if (existing) {
+		if (errors) {
 			return fail(400, {
-				errors: ['Email already exists'],
-				fields: { email }
+				errors: errors
 			});
 		}
-
-		const passwordHash = await bcrypt.hash(password, 10);
-
-		await prisma.user.create({ data: { email, passwordHash } });
-
 		redirect(303, '/auth/login');
 	}
 };
