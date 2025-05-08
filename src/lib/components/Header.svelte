@@ -31,10 +31,22 @@
 
 	<h1 class="text-2xl font-bold">Food Search</h1>
 
-	<button
-		class="absolute left-0 ml-5 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none
+	<div class="absolute left-0 ml-5 flex items-center space-x-4">
+		<button
+			class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none
       focus:ring-2 focus:ring-blue-300 focus-visible:ring-2 focus-visible:ring-blue-300 active:bg-blue-800"
-		onclick={() => goto('/')}
-		>Home
-	</button>
+			onclick={() => goto('/')}
+			>Home
+		</button>
+
+		{#if data.user}
+			<button
+				class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600 focus:outline-none focus:ring-2
+		focus:ring-green-300 active:bg-green-800"
+				onclick={() => goto('/dashboard')}
+			>
+				Dashboard
+			</button>
+		{/if}
+	</div>
 </div>

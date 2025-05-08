@@ -1,12 +1,13 @@
 import type { Food } from '$lib/types/food';
 
-const RELEVANT_NUTRIENTS: { key: string; name: string }[] = [
+export const RELEVANT_NUTRIENTS: { key: string; name: string }[] = [
 	{ key: 'energy', name: 'Energy' }, // kcal
 	{ key: 'protein', name: 'Protein' }, // g
 	{ key: 'fat', name: 'Total lipid (fat)' }, // g
 	{ key: 'carbs', name: 'Carbohydrate, by difference' }, // g
 	{ key: 'fiber', name: 'Fiber, total dietary' }, // g
-	{ key: 'sugar', name: 'Sugars, total including NLEA' } // g
+	{ key: 'sugar', name: 'Sugars, total including NLEA' }, // g
+	{ key: 'sugar', name: 'Total Sugars' } // g
 ];
 
 export function exportJSON(foods: Food[]) {
@@ -27,9 +28,9 @@ export function exportCSV(foods: Food[]) {
 		const trimmed_nutrients = f.foodNutrients
 			.filter((n) => RELEVANT_NUTRIENTS.some((r) => r.name === n.nutrientName))
 			.map((n) => ({
-				name: n.nutrientName,
+				nutrientName: n.nutrientName,
 				value: n.value,
-				unit: n.unitName
+				unitName: n.unitName
 			}));
 
 		// escape quotes in text fields and wrap in quotes

@@ -1,7 +1,7 @@
 import { JWT_SECRET } from '$env/static/private';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import prisma from '$lib/prisma';
+import prisma from '$lib/db/prisma';
 
 export async function createUser(email: string, password: string) {
 	// Check if user exists

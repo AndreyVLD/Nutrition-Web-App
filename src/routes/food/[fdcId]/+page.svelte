@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
+	let { data } = $props();
 </script>
 
-<div>
-	Hello from food page {page.params.fdcId}
-</div>
+<div>Hello from food page;</div>

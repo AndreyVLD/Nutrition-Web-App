@@ -1,4 +1,6 @@
+import { json } from '@sveltejs/kit';
+
 export async function POST({ cookies }) {
 	cookies.delete('session', { path: '/' });
-	return new Response();
+	return json({ status: 200 });
 }

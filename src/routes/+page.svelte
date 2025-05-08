@@ -2,7 +2,7 @@
 	import FoodItem from '$lib/components/FoodItem.svelte';
 	import InputForm from '$lib/components/InputForm.svelte';
 	import PaginationNav from '$lib/components/PaginationNav/PaginationNav.svelte';
-	import ExportButton from '$lib/components/ExportButton/ExportButton.svelte';
+	import ExportButton from '$lib/components/ExportImportButtons/ExportButton.svelte';
 	import type { PageProps } from './$types';
 	import { exportCSV, exportJSON } from '$lib/export';
 
@@ -17,6 +17,7 @@
 
 <div class="mb-5 flex flex-col items-center">
 	<InputForm bind:currentPage bind:loading bind:query />
+
 	{#if totalPages}
 		<div class="relative mt-4 flex w-full items-center justify-center">
 			<div class="absolute left-0 ml-4">
@@ -33,6 +34,7 @@
 					label="Export Food List"
 				/>
 			</div>
+
 			<PaginationNav bind:currentPage bind:loading {query} {totalPages} />
 		</div>
 	{/if}

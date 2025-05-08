@@ -1,7 +1,7 @@
 import type { Handle } from '@sveltejs/kit';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '$env/static/private';
-import prisma from '$lib/prisma';
+import prisma from '$lib/db/prisma';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.user = undefined;

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { fail, redirect } from '@sveltejs/kit';
-import { loginUser } from '$lib/user';
+import { loginUser } from '$lib/db/user';
 
 const LoginSchema = z.object({
 	email: z.string().email({ message: 'Invalid email address' }),

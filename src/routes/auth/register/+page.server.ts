@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { fail, redirect } from '@sveltejs/kit';
-import { createUser } from '$lib/user';
+import { createUser } from '$lib/db/user';
 
 const RegistrationSchema = z
 	.object({
