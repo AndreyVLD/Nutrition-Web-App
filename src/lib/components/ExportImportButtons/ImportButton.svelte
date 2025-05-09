@@ -26,13 +26,6 @@
 		}
 	}
 
-	onMount(() => {
-		document.addEventListener('click', handleClickOutside);
-		return () => {
-			document.removeEventListener('click', handleClickOutside);
-		};
-	});
-
 	function triggerImport(format: 'csv' | 'json') {
 		fileInputRef.accept = format === 'csv' ? '.csv' : '.json';
 		fileInputRef.onchange = async () => {
@@ -74,6 +67,13 @@
 		isOpen = false;
 		fileInputRef.click();
 	}
+
+	onMount(() => {
+		document.addEventListener('click', handleClickOutside);
+		return () => {
+			document.removeEventListener('click', handleClickOutside);
+		};
+	});
 </script>
 
 <div class="relative inline-block text-left">
@@ -83,12 +83,16 @@
 	<!-- Main button -->
 	<button
 		bind:this={buttonRef}
-		class="rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
+		class="rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600 disabled:opacity-50"
 		disabled={uploading}
 		onclick={togglePopup}
 		type="button"
 	>
-		{label}
+		{#if uploading}
+			Importing...
+		{:else}
+			{label}
+		{/if}
 	</button>
 
 	{#if isOpen}

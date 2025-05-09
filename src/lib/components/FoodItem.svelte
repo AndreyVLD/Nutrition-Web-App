@@ -1,32 +1,32 @@
 <script lang="ts">
 	import type { Food } from '$lib/types/food';
 
-	const foodProps: Food = $props();
-	const totalCarbs = foodProps.foodNutrients.find((nutrient) => nutrient.nutrientId === 1005);
+	const { fdcId, description, dataType, foodCategory, brandOwner, foodNutrients }: Food = $props();
+	const totalCarbs = foodNutrients.find((nutrient) => nutrient.nutrientId === 1005);
 
-	const totalSugars = foodProps.foodNutrients.find(
+	const totalSugars = foodNutrients.find(
 		(nutrient) => nutrient.nutrientId === 2000 || nutrient.nutrientId === 1063
 	);
 </script>
 
 <a
-	href={`/food/${foodProps.fdcId}`}
 	class="flex w-full max-w-md flex-col rounded-lg bg-white p-4 shadow-md
 			transition duration-300 ease-in-out hover:scale-105 hover:bg-blue-50 hover:shadow-lg"
-	target="_blank"
+	href={`/food/${fdcId}`}
 	rel="noopener noreferrer"
+	target="_blank"
 >
 	<!-- Card Header -->
 	<div class="mb-4 flex flex-col gap-1">
-		<div class="m-0 text-lg font-bold">{foodProps.description}</div>
+		<div class="m-0 text-lg font-bold">{description}</div>
 		<div class="text-sm text-gray-600">
 			<span class="font-semibold">Category:</span>
-			{foodProps.foodCategory}
+			{foodCategory}
 		</div>
-		{#if foodProps.brandOwner}
+		{#if brandOwner}
 			<div class="text-sm text-gray-600">
 				<span class="font-semibold">Brand:</span>
-				{foodProps.brandOwner}
+				{brandOwner}
 			</div>
 		{/if}
 	</div>
@@ -42,5 +42,5 @@
 			>
 		{/if}
 	</div>
-	<div class="mt-auto self-end text-sm text-gray-600">{foodProps.dataType}</div>
+	<div class="mt-auto self-end text-sm text-gray-600">{dataType}</div>
 </a>

@@ -4,7 +4,7 @@ import { upsertFavorite } from '$lib/db/favorite';
 import type { Food, FoodNutrient } from '$lib/types/food';
 import Papa from 'papaparse';
 
-export async function importCSV(file: File, user: SessionUser): Promise<{ imported: number }> {
+export async function importCSV(file: File, user: SessionUser) {
 	const text = await file.text();
 	const parsed = Papa.parse<Record<string, string>>(text, {
 		header: true,
@@ -57,7 +57,7 @@ export async function importCSV(file: File, user: SessionUser): Promise<{ import
 	return { imported: count };
 }
 
-export async function importJSON(file: File, user: SessionUser): Promise<{ imported: number }> {
+export async function importJSON(file: File, user: SessionUser) {
 	const text = await file.text();
 	let foods: Food[];
 

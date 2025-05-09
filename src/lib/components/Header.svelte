@@ -7,15 +7,15 @@
 		onLogout: () => void;
 	}
 
-	const data: HeaderProps = $props();
+	const { user, onLogout }: HeaderProps = $props();
 </script>
 
 <div class="relative mt-5 flex w-full items-center justify-center">
-	{#if data.user}
+	{#if user}
 		<button
 			class="absolute right-0 mr-5 rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-600
 			focus:outline-none focus:ring-2 focus:ring-red-300 active:bg-red-800"
-			onclick={data.onLogout}
+			onclick={onLogout}
 		>
 			Logout
 		</button>
@@ -39,7 +39,7 @@
 			>Home
 		</button>
 
-		{#if data.user}
+		{#if user}
 			<button
 				class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600 focus:outline-none focus:ring-2
 		focus:ring-green-300 active:bg-green-800"

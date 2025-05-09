@@ -14,6 +14,7 @@ export async function createUser(email: string, password: string) {
 	}
 
 	try {
+		// Create the user
 		const user = await prisma.user.create({
 			data: {
 				email,
@@ -48,9 +49,24 @@ export async function loginUser(email: string, password: string) {
 		};
 	}
 
+	// Generate a JWT token
 	const jwtUser = { id: user.id, email: user.email };
 
 	const token = jwt.sign(jwtUser, JWT_SECRET, { expiresIn: '1d' });
 
 	return { token };
+}
+
+export async function deleteUser(id: number) {
+	return prisma.user.delete({
+		where: { id }
+	});
+}
+
+export async function getUsers() {
+	return prisma.user.findMany({});
+}
+
+export async function getUserCount() {
+	return prisma.user.count();
 }

@@ -1,5 +1,6 @@
 import type { Food } from '$lib/types/food';
 
+// A list of nutrients that are relevant for export and import
 export const RELEVANT_NUTRIENTS: { key: string; name: string }[] = [
 	{ key: 'energy', name: 'Energy' }, // kcal
 	{ key: 'protein', name: 'Protein' }, // g
@@ -11,8 +12,11 @@ export const RELEVANT_NUTRIENTS: { key: string; name: string }[] = [
 ];
 
 export function exportJSON(foods: Food[]) {
+	// Prepare the data
 	const json = JSON.stringify(foods, null, 2);
 	const blob = new Blob([json], { type: 'application/json' });
+
+	// Trigger download
 	const url = URL.createObjectURL(blob);
 	const a = document.createElement('a');
 	a.href = url;
@@ -24,6 +28,8 @@ export function exportJSON(foods: Food[]) {
 export function exportCSV(foods: Food[]) {
 	const cols = ['fdcId', 'description', 'dataType', 'foodCategory', 'brandOwner', 'foodNutrients'];
 	const header = cols.join(',');
+
+	// Prepare the data
 	const rows = foods.map((f) => {
 		const trimmed_nutrients = f.foodNutrients
 			.filter((n) => RELEVANT_NUTRIENTS.some((r) => r.name === n.nutrientName))
@@ -45,9 +51,11 @@ export function exportCSV(foods: Food[]) {
 			esc(JSON.stringify(trimmed_nutrients))
 		].join(',');
 	});
-	// 4. Join header + rows
+
+	// Join header + rows
 	const csv = [header, ...rows].join('\r\n');
-	// 5. Trigger download
+
+	// Trigger download
 	const blob = new Blob([csv], { type: 'text/csv' });
 	const url = URL.createObjectURL(blob);
 	const a = document.createElement('a');

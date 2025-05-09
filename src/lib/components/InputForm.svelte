@@ -16,8 +16,12 @@
 	function handleEnhance() {
 		loading = true;
 		currentPage = 1;
-		return async ({ update }: { update: any }) => {
-			await update({ reset: false });
+		return async ({
+			update
+		}: {
+			update: (opts?: { reset?: boolean; invalidateAll?: boolean }) => Promise<void>;
+		}) => {
+			await update({ reset: false, invalidateAll: false });
 			loading = false;
 		};
 	}

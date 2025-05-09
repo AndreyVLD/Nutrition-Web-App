@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { RELEVANT_NUTRIENTS } from '$lib/export';
 	import type { FoodNutrient } from '$lib/types/food';
+	import { enhance } from '$app/forms';
 
-	const data = $props();
+	const { favorites } = $props();
 
 	function getNutrientValue(nutrients: FoodNutrient[], name: string) {
 		const found = nutrients.find((n) => n.nutrientName === name);
@@ -24,7 +25,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each data.favorites as fav}
+		{#each favorites as fav}
 			<tr>
 				<td class="border px-4 py-2">{fav.food.fdcId}</td>
 				<td class="border px-4 py-2">{fav.food.description}</td>
@@ -36,9 +37,11 @@
 				{/each}
 				<td class="border px-4 py-2">{new Date(fav.addedAt).toLocaleString()}</td>
 				<td class="border px-4 py-2">
-					<form action="/remove-favorite" method="POST">
+					<form action="?/removeFavorite" method="POST" use:enhance>
 						<input type="hidden" name="fdcId" value={fav.food.fdcId} />
-						<button class="text-red-500" type="submit"> Delete</button>
+						<button class="text-red-500 hover:text-red-700 hover:underline" type="submit">
+							Delete
+						</button>
 					</form>
 				</td>
 			</tr>
