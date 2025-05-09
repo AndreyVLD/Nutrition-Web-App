@@ -3,6 +3,11 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import prisma from '$lib/db/prisma';
 
+/**
+ * Create a new user in the database.
+ * @param email - The email address of the user.
+ * @param password - The password for the user.
+ */
 export async function createUser(email: string, password: string) {
 	// Check if user exists
 	const user = await prisma.user.findUnique({ where: { email } });
@@ -30,6 +35,12 @@ export async function createUser(email: string, password: string) {
 	}
 }
 
+/**
+ * Login a user and return a JWT token.
+ * @param email - The email address of the user.
+ * @param password - The password for the user.
+ * @return A JWT token if the login is successful, or an error message if it fails.
+ */
 export async function loginUser(email: string, password: string) {
 	// Check if user exists
 	const user = await prisma.user.findUnique({ where: { email } });
@@ -57,16 +68,28 @@ export async function loginUser(email: string, password: string) {
 	return { token };
 }
 
+/**
+ * Delete a user from the database.
+ * @param id - The ID of the user to delete.
+ */
 export async function deleteUser(id: number) {
 	return prisma.user.delete({
 		where: { id }
 	});
 }
 
+/**
+ * Gets all users from the database.
+ * @returns An array of users.
+ */
 export async function getUsers() {
 	return prisma.user.findMany({});
 }
 
+/**
+ * Gets the user count from the database.
+ * @returns The total count of users.
+ */
 export async function getUserCount() {
 	return prisma.user.count();
 }

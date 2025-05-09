@@ -1,6 +1,14 @@
+<!-- This component provides the form for searching food items. -->
+
 <script lang="ts">
 	import { enhance } from '$app/forms';
 
+	/**
+	 * InputForm component for searching food items.
+	 * @param {string} query - The search query.
+	 * @param {number} [currentPage] - The current page number.
+	 * @param {boolean} [loading] - Whether the button is in a loading state.
+	 */
 	interface InputFormProps {
 		query: string;
 		currentPage?: number;
@@ -13,6 +21,10 @@
 		loading = $bindable(false)
 	}: InputFormProps = $props();
 
+	/**
+	 * Handles the enhancement of the form submission for searching food items.
+	 * @returns - A function that handles the form submission.
+	 */
 	function handleEnhance() {
 		loading = true;
 		currentPage = 1;
@@ -28,6 +40,7 @@
 </script>
 
 <form action="?/search" class="mt-5 flex flex-row" method="POST" use:enhance={handleEnhance}>
+	<!-- Main input field for searching food items -->
 	<input
 		autocomplete="off"
 		bind:value={query}
@@ -39,12 +52,15 @@
 		required
 		type="text"
 	/>
+
+	<!-- Search button with loading state -->
 	<button
 		class="ml-5 flex items-center rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 focus:outline-none
 		focus:ring-2 focus:ring-blue-300 focus-visible:ring-2 focus-visible:ring-blue-300 active:bg-blue-800"
 		disabled={loading}
 	>
 		{#if loading}
+			<!-- Loading spinner -->
 			<svg class="mr-2 h-5 w-5 animate-spin text-white" viewBox="0 0 24 24">
 				<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
 				<path
@@ -55,6 +71,7 @@
 			</svg>
 			Loading...
 		{:else}
+			<!-- Search icon and text -->
 			<svg
 				class="mr-2 h-5 w-5"
 				fill="none"

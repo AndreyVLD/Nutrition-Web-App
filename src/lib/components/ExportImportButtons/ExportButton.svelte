@@ -1,7 +1,13 @@
+<!-- This component provides a button to export data in CSV or JSON format. -->
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	// Optional data prop if you want to pass data directly to the component
+	/**
+	 * ExportButton component for exporting data in CSV or JSON format.
+	 * @param {string} label - The label for the button.
+	 * @param {(format: 'csv' | 'json') => void} exportFunc - Function to handle the export logic.
+	 */
 	interface ExportButtonProps {
 		label?: string;
 		exportFunc: (format: 'csv' | 'json') => void;
@@ -24,6 +30,10 @@
 		isOpen = false;
 	}
 
+	/**
+	 * Handles click events outside the button and popup to close the popup.
+	 * @param {MouseEvent} event - The mouse event.
+	 */
 	function handleClickOutside(event: MouseEvent) {
 		const path = event.composedPath();
 		if (isOpen && buttonRef && popupRef && !path.includes(buttonRef) && !path.includes(popupRef)) {
@@ -43,6 +53,7 @@
 </script>
 
 <div>
+	<!-- Main button -->
 	<button
 		bind:this={buttonRef}
 		class="rounded bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
@@ -52,6 +63,7 @@
 		{label}
 	</button>
 
+	<!-- Popup menu -->
 	{#if isOpen}
 		<div
 			bind:this={popupRef}

@@ -1,8 +1,14 @@
+<!-- This component provides a button to export data in CSV or JSON format. -->
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { invalidateAll } from '$app/navigation';
 
-	// Props: label text and a callback to handle import
+	/**
+	 * ImportButton component for importing CSV or JSON files.
+	 * @param {string} label - The label for the button.
+	 * @param {string} url - The URL to send the file to.
+	 */
 	interface ImportButtonProps {
 		label?: string;
 		url: string;
@@ -19,6 +25,10 @@
 		isOpen = !isOpen;
 	}
 
+	/**
+	 * Handles click events outside the button and popup to close the popup.
+	 * @param {MouseEvent} event - The mouse event.
+	 */
 	function handleClickOutside(event: MouseEvent) {
 		const path = event.composedPath();
 		if (isOpen && buttonRef && popupRef && !path.includes(buttonRef) && !path.includes(popupRef)) {
@@ -26,8 +36,13 @@
 		}
 	}
 
+	/**
+	 * Triggers the file input for importing CSV or JSON files.
+	 * @param {'csv' | 'json'} format - The format of the file to import.
+	 */
 	function triggerImport(format: 'csv' | 'json') {
 		fileInputRef.accept = format === 'csv' ? '.csv' : '.json';
+
 		fileInputRef.onchange = async () => {
 			const files = fileInputRef.files;
 			if (files?.length) {
@@ -35,7 +50,7 @@
 
 				console.log(file);
 
-				// build form data
+				// Build form data
 				const form = new FormData();
 				form.append('file', file);
 				form.append('format', format);
@@ -43,6 +58,7 @@
 				isOpen = false;
 				uploading = true;
 
+				// Upload the file
 				try {
 					const res = await fetch(url, {
 						method: 'POST',
@@ -64,6 +80,7 @@
 
 			fileInputRef.value = '';
 		};
+
 		isOpen = false;
 		fileInputRef.click();
 	}
@@ -95,6 +112,7 @@
 		{/if}
 	</button>
 
+	<!-- Popup menu -->
 	{#if isOpen}
 		<div
 			bind:this={popupRef}

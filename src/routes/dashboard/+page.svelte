@@ -1,3 +1,5 @@
+<!-- Main profile dashboard page for displaying user information and favorites -->
+
 <script lang="ts">
 	import ImportButton from '$lib/components/ExportImportButtons/ImportButton.svelte';
 	import FoodTable from '$lib/components/FoodTable.svelte';
@@ -8,6 +10,8 @@
 
 <div class="p-6">
 	<h2 class="mb-4 text-2xl font-bold text-blue-900">Hello, {data.user.email}!</h2>
+
+	<!-- Import Favorites Section -->
 	<section class="mb-8 rounded-lg bg-white p-6 shadow">
 		<h3 class="mb-2 text-xl font-semibold">Import Favorites</h3>
 		<div class="mb-4 text-gray-700">
@@ -35,6 +39,7 @@
 		<ImportButton label="Import CSV / JSON" url="/dashboard/import" />
 	</section>
 
+	<!-- Favorites Section -->
 	<h3 class="mb-2 text-xl font-semibold">Your favorites</h3>
 	<FoodTable favorites={data.favorites} />
 </div>

@@ -1,5 +1,10 @@
 import { importCSV, importJSON } from '$lib/import';
 
+/**
+ * POST request handler for importing food data. It supports both JSON and CSV formats.
+ * @param request - The request object containing form data.
+ * @param locals - The locals object containing user session information.
+ */
 export async function POST({ request, locals }) {
 	const user = locals.user;
 	if (!user) {

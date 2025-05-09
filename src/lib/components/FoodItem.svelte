@@ -1,7 +1,20 @@
+<!-- This component provides a card to display food information in the list. -->
+
 <script lang="ts">
 	import type { Food } from '$lib/types/food';
 
+	/**
+	 * FoodItem component for displaying food information in a card format.
+	 * @param {string} fdcId - The FDC ID of the food item.
+	 * @param {string} description - The description of the food item.
+	 * @param {string} dataType - The data type of the food item.
+	 * @param {string} foodCategory - The category of the food item.
+	 * @param {string} [brandOwner] - Optional brand owner of the food item.
+	 * @param {Array<{ nutrientId: number; value: number; unitName: string }>} foodNutrients - The nutrients of the food item.
+	 */
 	const { fdcId, description, dataType, foodCategory, brandOwner, foodNutrients }: Food = $props();
+
+	// Find the total carbohydrates and sugars in the food nutrients using nutrient IDs
 	const totalCarbs = foodNutrients.find((nutrient) => nutrient.nutrientId === 1005);
 
 	const totalSugars = foodNutrients.find(

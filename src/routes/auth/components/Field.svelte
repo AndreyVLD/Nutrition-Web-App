@@ -1,4 +1,14 @@
+<!-- This component provides a generic input field for the authentication forms. -->
+
 <script lang="ts">
+	/**
+	 * Field component for creating a generic input field.
+	 * @param {string} labelFor - The ID of the input field.
+	 * @param {string} label - The label for the input field.
+	 * @param {string} id - The ID of the input field.
+	 * @param {string} type - The type of the input field (e.g., text, password).
+	 * @param {boolean} required - Whether the input field is required.
+	 */
 	interface FieldProps {
 		labelFor: string;
 		label: string;

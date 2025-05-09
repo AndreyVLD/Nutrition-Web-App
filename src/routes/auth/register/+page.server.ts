@@ -2,6 +2,12 @@ import { z } from 'zod';
 import { fail, redirect } from '@sveltejs/kit';
 import { createUser } from '$lib/db/user';
 
+/**
+ * Zod schema for validating registration form data.
+ * This schema checks that the email is a valid email address,
+ * the password is at least 8 characters long,
+ * and the repeat password matches the original password.
+ */
 const RegistrationSchema = z
 	.object({
 		email: z.string().email({ message: 'Invalid email address' }),
@@ -13,11 +19,20 @@ const RegistrationSchema = z
 		path: ['confirm']
 	});
 
+/**
+ * Form actions for the registration page.
+ */
 export const actions = {
+	/**
+	 * Handle the registration form submission.
+	 * @param request - The request object containing form data.
+	 * @returns A redirect to the login page if successful, or an error message if it fails.
+	 */
 	default: async ({ request }) => {
 		const formData = Object.fromEntries(await request.formData());
 		const result = RegistrationSchema.safeParse(formData);
 
+		// If validation fails, flatten the errors and return them
 		if (!result.success) {
 			const { fieldErrors, formErrors } = result.error.flatten();
 
@@ -30,6 +45,7 @@ export const actions = {
 			});
 		}
 
+		// If validation succeeds, extract the email and password from the result and create the user
 		const { email, password } = result.data;
 
 		const { errors } = await createUser(email, password);

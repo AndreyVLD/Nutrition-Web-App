@@ -11,6 +11,11 @@ export const RELEVANT_NUTRIENTS: { key: string; name: string }[] = [
 	{ key: 'sugar', name: 'Total Sugars' } // g
 ];
 
+/**
+ * Export food data to JSON format.
+ * This function creates a JSON file containing the food data and triggers a download in the browser.
+ * @param foods - An array of food items to be exported.
+ */
 export function exportJSON(foods: Food[]) {
 	// Prepare the data
 	const json = JSON.stringify(foods, null, 2);
@@ -25,6 +30,11 @@ export function exportJSON(foods: Food[]) {
 	URL.revokeObjectURL(url);
 }
 
+/**
+ * Export food data to CSV format.
+ * This function creates a CSV file containing the food data and triggers a download in the browser.
+ * @param foods - An array of food items to be exported.
+ */
 export function exportCSV(foods: Food[]) {
 	const cols = ['fdcId', 'description', 'dataType', 'foodCategory', 'brandOwner', 'foodNutrients'];
 	const header = cols.join(',');

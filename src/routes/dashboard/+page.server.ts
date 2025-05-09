@@ -2,6 +2,11 @@ import type { PageServerLoad } from './$types';
 import { error, redirect } from '@sveltejs/kit';
 import { getFavoritesByUser, removeFavorite } from '$lib/db/favorite';
 
+/**
+ * Load function for the dashboard page.
+ * @param event - The event object containing request and response information.
+ * @returns An object containing user information and their favorite food items.
+ */
 export const load: PageServerLoad = async (event) => {
 	const user = event.locals.user;
 	if (!user) {
@@ -17,7 +22,16 @@ export const load: PageServerLoad = async (event) => {
 	return { user, favorites };
 };
 
+/**
+ * Form Actions for the dashboard page.
+ */
 export const actions = {
+	/**
+	 * Remove a food item from the user's favorites.
+	 * @param request - The request object containing form data.
+	 * @param locals - The locals object containing user session information.
+	 * @returns An object indicating success or failure of the action.
+	 */
 	removeFavorite: async ({ request, locals }) => {
 		const user = locals.user;
 		if (!user) {

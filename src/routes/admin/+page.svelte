@@ -1,3 +1,5 @@
+<!-- The admin dashboard page for managing users and foods. -->
+
 <script lang="ts">
 	import type { PageProps } from './$types';
 	import { enhance } from '$app/forms';

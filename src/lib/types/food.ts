@@ -1,3 +1,5 @@
+// This file contains TypeScript interfaces for the FoodData Central API responses.
+
 export interface FoodSearchResponse {
 	totalHits: number;
 	totalPages: number;

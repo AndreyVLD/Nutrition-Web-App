@@ -3,6 +3,9 @@ import bcrypt from 'bcryptjs';
 
 const db = new PrismaClient();
 
+/**
+ * Seed the database with an admin user.
+ */
 async function main() {
 	const hash = await bcrypt.hash('AdminPass123', 10);
 	await db.user.upsert({

@@ -1,4 +1,11 @@
+<!-- A button that takes the entire width of its parent container and has a blue background, used in form submissions. -->
+
 <script lang="ts">
+	/**
+	 * FullButton component for creating a button with a full width and blue background.
+	 * @param {string} type - The type of the button (e.g., button, submit, reset).
+	 * @param {string} label - The label for the button.
+	 */
 	interface ButtonProps {
 		type: 'button' | 'submit' | 'reset' | null | undefined;
 		label: string;
